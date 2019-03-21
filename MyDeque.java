@@ -18,8 +18,10 @@ public class MyDeque<E>{
   }
 
   public int size() {
-    return mod((end - start), data.length);
+    return mod((end - start), data.length) + 1;
   }
+
+  public void addFirst() {}
 
   private int mod(int x, int y) {
     int result = x % y;
