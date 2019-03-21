@@ -8,7 +8,9 @@ public class MyDeque<E>{
     data = d;
   }
 
-  private int size() {
+
+
+  public int size() {
     return mod((end - start), data.length);
   }
 
