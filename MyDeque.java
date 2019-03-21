@@ -8,7 +8,14 @@ public class MyDeque<E>{
     data = d;
   }
 
-
+  public String toString() {
+    String out = "{";
+    for (int i = start; i%data.length < end; i++) {
+      out += data[i] + " ";
+    }
+    out += "}";
+    return out;
+  }
 
   public int size() {
     return mod((end - start), data.length);
