@@ -21,7 +21,9 @@ public class MyDeque<E>{
     return mod((end - start), data.length) + 1;
   }
 
-  public void addFirst() {}
+  public void addFirst(E value) {
+    data[mod(--start, data.length)] = value;
+  }
 
   private int mod(int x, int y) {
     int result = x % y;
