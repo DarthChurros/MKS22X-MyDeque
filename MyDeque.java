@@ -10,8 +10,8 @@ public class MyDeque<E>{
 
   public String toString() {
     String out = "{";
-    for (int i = start; i % data.length < end; i++) {
-      out += data[i % data.length] + " ";
+    for (int i = 0; i < size(); i++) {
+      out += data[start + i] + " ";
     }
     out += "}";
     return out;
