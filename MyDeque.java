@@ -1,3 +1,5 @@
+import java.util.NoSuchElementException;
+
 public class MyDeque<E>{
   private E[] data;
   private int start, end;
@@ -54,10 +56,12 @@ public class MyDeque<E>{
   }
 
   public E getFirst() {
+    if (size() == 0) throw new NoSuchElementException();
     return data[start];
   }
 
   public E getLast() {
+    if (size() == 0) throw new NoSuchElementException();
     return data[end-1];
   }
 
