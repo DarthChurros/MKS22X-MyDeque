@@ -43,6 +43,24 @@ public class MyDeque<E>{
     end = (end + 1) % data.length;
   }
 
+  public E removeFirst() {
+    start = (start + 1) % data.length;
+    return data[mod(start-1,data.length)];
+  }
+
+  public E removeLast() {
+    end = mod(end - 1, data.length);
+    return data[(end+1)%data.length];
+  }
+
+  public E getFirst() {
+    return data[start];
+  }
+
+  public E getLast() {
+    return data[end-1];
+  }
+
   private void resize() {
     @SuppressWarnings("unchecked")
     E[] temp = (E[])new Object[data.length * 2 + 1];
