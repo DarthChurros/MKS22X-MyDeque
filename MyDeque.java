@@ -37,6 +37,12 @@ public class MyDeque<E>{
     data[start] = value;
   }
 
+  public void addLast(E value) {
+    if (size() >= data.length - 1) resize();
+    data[end] = value;
+    end = (end + 1) % data.length;
+  }
+
   private void resize() {
     @SuppressWarnings("unchecked")
     E[] temp = (E[])new Object[data.length * 2 + 1];
@@ -58,8 +64,10 @@ public class MyDeque<E>{
     MyDeque<Integer> test = new MyDeque<Integer>();
     System.out.println(test);
     test.printData();
-    for (int i = 0; i < 12; i++) {
-      test.addFirst(Integer.valueOf(i));
+    for (int i = 1; i < 10; i++) {
+      test.addFirst(Integer.valueOf(i*-1));
+      System.out.println(test);
+      test.addLast(Integer.valueOf(i));
       System.out.println(test);
     }
     test.printData();
