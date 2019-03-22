@@ -11,7 +11,7 @@ public class MyDeque<E>{
   public String toString() {
     String out = "{";
     for (int i = 0; i < size(); i++) {
-      out += data[start + i] + " ";
+      out += data[(start + i) % data.length] + " ";
     }
     out += "}";
     return out;
@@ -32,8 +32,20 @@ public class MyDeque<E>{
   }
 
   public void addFirst(E value) {
+    if (size() >= data.length - 1) resize();
     start = mod(start-1,data.length);
     data[start] = value;
+  }
+
+  private void resize() {
+    @SuppressWarnings("unchecked")
+    E[] temp = (E[])new Object[data.length * 2 + 1];
+    for (int i = 0; i < data.length; i++) {
+      temp[i] = data[(start+i) % data.length];
+    }
+    end = size();
+    start = 0;
+    data = temp;
   }
 
   private int mod(int x, int y) {
@@ -44,9 +56,12 @@ public class MyDeque<E>{
 
   public static void main(String[] args) {
     MyDeque<Integer> test = new MyDeque<Integer>();
-    test.addFirst(Integer.valueOf(4));
-    test.addFirst(Integer.valueOf(5));
     System.out.println(test);
+    test.printData();
+    for (int i = 0; i < 12; i++) {
+      test.addFirst(Integer.valueOf(i));
+      System.out.println(test);
+    }
     test.printData();
   }
 }
