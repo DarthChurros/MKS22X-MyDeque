@@ -1,4 +1,4 @@
-import java.util.NoSuchElementException;
+import java.util.*;
 
 public class MyDeque<E>{
   private E[] data;
@@ -66,7 +66,7 @@ public class MyDeque<E>{
 
   public E getLast() {
     if (size() == 0) throw new NoSuchElementException();
-    return data[end-1];
+    return data[mod(end-1,data.length)];
   }
 
   private void resize() {
@@ -90,12 +90,19 @@ public class MyDeque<E>{
     MyDeque<Integer> test = new MyDeque<Integer>();
     System.out.println(test);
     test.printData();
+    /*
     for (int i = 1; i < 10; i++) {
       test.addFirst(Integer.valueOf(i*-1));
       System.out.println(test);
       test.addLast(Integer.valueOf(i));
       System.out.println(test);
     }
-    test.printData();
+    */
+    //test.addFirst(0);
+    //test.printData();
+    for (int i = 0; i < 10; i++) {
+      test.addFirst(i);
+      test.printData();
+    }
   }
 }
