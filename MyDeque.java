@@ -48,11 +48,13 @@ public class MyDeque<E>{
   }
 
   public E removeFirst() {
+    if (size() == 0) throw new NoSuchElementException();
     start = (start + 1) % data.length;
     return data[mod(start-1,data.length)];
   }
 
   public E removeLast() {
+    if (size() == 0) throw new NoSuchElementException();
     end = mod(end - 1, data.length);
     return data[(end+1)%data.length];
   }
