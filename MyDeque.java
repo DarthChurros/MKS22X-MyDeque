@@ -34,12 +34,14 @@ public class MyDeque<E>{
   }
 
   public void addFirst(E value) {
+    if (value == null) throw new NullPointerException();
     if (size() >= data.length - 1) resize();
     start = mod(start-1,data.length);
     data[start] = value;
   }
 
   public void addLast(E value) {
+    if (value == null) throw new NullPointerException();
     if (size() >= data.length - 1) resize();
     data[end] = value;
     end = (end + 1) % data.length;
