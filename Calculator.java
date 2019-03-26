@@ -5,32 +5,38 @@ public class Calculator {
     double temp;
     for (int i = 0; i < s.length(); i++) {
       if (s.charAt(i) != ' ') {
+        arg += s.charAt(i);
+      } else {
+        System.out.println("arg="+arg);
         switch (arg) {
           case "+":
-            stack.addLast(stack.getLast() + stack.getLast());
+            stack.addLast(stack.removeLast() + stack.removeLast());
             break;
           case "-":
-            temp = stack.getLast();
-            stack.addLast(stack.getLast() - temp);
+            temp = stack.removeLast();
+            stack.addLast(stack.removeLast() - temp);
             break;
           case "*":
-            stack.addLast(stack.getLast() - stack.getLast());
+            stack.addLast(stack.removeLast() - stack.removeLast());
             break;
           case "/":
-            temp = stack.getLast();
-            stack.addLast(stack.getLast() / temp);
+            temp = stack.removeLast();
+            stack.addLast(stack.removeLast() / temp);
             break;
           case "%":
-            temp = stack.getLast();
-            stack.addLast(stack.getLast() % temp);
+            temp = stack.removeLast();
+            stack.addLast(stack.removeLast() % temp);
             break;
           default:
             stack.addLast(Double.parseDouble(arg));
         }
-      } else {
         arg = "";
       }
     }
     return stack.getLast();
+  }
+
+  public static void main(String[] args) {
+    System.out.println(eval(args[0]));
   }
 }
