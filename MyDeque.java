@@ -81,9 +81,7 @@ public class MyDeque<E>{
   }
 
   private int mod(int x) {
-    int result = x % data.length;
-    if (result < 0) result += data.length;
-    return result;
+    return (x + data.length) % data.length;
   }
 
   public static void main(String[] args) {
