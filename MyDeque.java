@@ -56,7 +56,7 @@ public class MyDeque<E>{
   public E removeLast() {
     if (size() == 0) throw new NoSuchElementException();
     end = mod(end - 1, data.length);
-    return data[(end+1)%data.length];
+    return data[end];
   }
 
   public E getFirst() {
