@@ -13,7 +13,7 @@ public class MyDeque<E>{
   public String toString() {
     String out = "{";
     for (int i = 0; i < size(); i++) {
-      out += data[(start + i) % data.length] + " ";
+      out += data[mod(start + i)] + " ";
     }
     out += "}";
     return out;
@@ -30,13 +30,13 @@ public class MyDeque<E>{
   }
 
   public int size() {
-    return mod((end - start), data.length);
+    return mod(end - start);
   }
 
   public void addFirst(E value) {
     if (value == null) throw new NullPointerException();
     if (size() >= data.length - 1) resize();
-    start = mod(start-1,data.length);
+    start = mod(start-1);
     data[start] = value;
   }
 
@@ -44,18 +44,18 @@ public class MyDeque<E>{
     if (value == null) throw new NullPointerException();
     if (size() >= data.length - 1) resize();
     data[end] = value;
-    end = (end + 1) % data.length;
+    end = mod(end + 1);
   }
 
   public E removeFirst() {
     if (size() == 0) throw new NoSuchElementException();
-    start = (start + 1) % data.length;
-    return data[mod(start-1,data.length)];
+    start = mod(start + 1);
+    return data[mod(start-1)];
   }
 
   public E removeLast() {
     if (size() == 0) throw new NoSuchElementException();
-    end = mod(end - 1, data.length);
+    end = mod(end - 1);
     return data[end];
   }
 
@@ -66,23 +66,23 @@ public class MyDeque<E>{
 
   public E getLast() {
     if (size() == 0) throw new NoSuchElementException();
-    return data[mod(end-1,data.length)];
+    return data[mod(end-1)];
   }
 
   private void resize() {
     @SuppressWarnings("unchecked")
     E[] temp = (E[])new Object[data.length * 2 + 1];
     for (int i = 0; i < data.length; i++) {
-      temp[i] = data[(start+i) % data.length];
+      temp[i] = data[mod(start+i)];
     }
     end = size();
     start = 0;
     data = temp;
   }
 
-  private int mod(int x, int y) {
-    int result = x % y;
-    if (result < 0) result += y;
+  private int mod(int x) {
+    int result = x % data.length;
+    if (result < 0) result += data.length;
     return result;
   }
 
