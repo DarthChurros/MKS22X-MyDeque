@@ -7,7 +7,7 @@ public class Calculator {
       if (s.charAt(i) != ' ') {
         arg += s.charAt(i);
       } else {
-        System.out.println("arg="+arg);
+        System.out.println(stack);
         switch (arg) {
           case "+":
             stack.addLast(stack.removeLast() + stack.removeLast());
@@ -17,7 +17,7 @@ public class Calculator {
             stack.addLast(stack.removeLast() - temp);
             break;
           case "*":
-            stack.addLast(stack.removeLast() - stack.removeLast());
+            stack.addLast(stack.removeLast() * stack.removeLast());
             break;
           case "/":
             temp = stack.removeLast();
